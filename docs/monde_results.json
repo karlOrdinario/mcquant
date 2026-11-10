@@ -1,0 +1,169 @@
+{
+  "headline": "Valued Monde Nissin Corporation at \u20b17.23 to \u20b111.37 per share (90% range) versus a market price of \u20b16.40, a more than 99% probability the shares are worth more than today's price.",
+  "price": 6.4,
+  "price_date": "2026-11-06",
+  "valuation_date": "2025-12-31",
+  "monte_carlo": {
+    "simulations": 50000.0,
+    "discarded (WACC - g < 1%)": 0.0,
+    "mean": 9.126705679456066,
+    "std error of mean": 0.005689673841084395,
+    "median (P50)": 9.021571915373748,
+    "P5": 7.229902111653872,
+    "P25": 8.216190629405947,
+    "P75": 9.920003356114856,
+    "P95": 11.37063339047965,
+    "deterministic (most likely inputs)": 9.741016710865683,
+    "market price": 6.4,
+    "P(value > price)": 0.99618,
+    "std error of P": 0.0002758770595754582
+  },
+  "base_case": {
+    "wacc": 0.10239884947433096,
+    "cost_of_equity": 0.103942,
+    "enterprise_value_m": 147641.48215346597,
+    "equity_value_m": 165083.39015346597,
+    "value_per_share_valuation_date": 9.187320355288177,
+    "value_per_share_price_date": 9.741016710865683,
+    "terminal_share_of_ev": 0.7525374056074793,
+    "implied_exit_multiple": 8.344974248189583
+  },
+  "tornado": [
+    {
+      "driver": "Beta",
+      "low input": 0.4684268649551093,
+      "high input": 0.7098688697478625,
+      "unit": "x",
+      "value at low input": 10.839672155067408,
+      "value at high input": 8.742976664223857,
+      "swing": 2.096695490843551,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "EBITDA margin",
+      "low input": 0.1756066017177982,
+      "high input": 0.20051316701949484,
+      "unit": "%",
+      "value at low input": 8.725968135293718,
+      "value at high input": 10.482424333906593,
+      "swing": 1.7564561986128755,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "Risk-free rate",
+      "low input": 0.06331191183457531,
+      "high input": 0.07546030613041801,
+      "unit": "%",
+      "value at low input": 9.986058504595778,
+      "value at high input": 8.581262458259047,
+      "swing": 1.404796046336731,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "Terminal growth g",
+      "low input": 0.03447213595499958,
+      "high input": 0.04552786404500042,
+      "unit": "%",
+      "value at low input": 9.160895112619324,
+      "value at high input": 10.433914034746653,
+      "swing": 1.2730189221273296,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "Equity risk premium",
+      "low input": 0.06307308237088326,
+      "high input": 0.07475500238322266,
+      "unit": "%",
+      "value at low input": 10.040397770277071,
+      "value at high input": 9.186488814949024,
+      "swing": 0.8539089553280466,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "Revenue growth (all years)",
+      "low input": -0.013845695135029557,
+      "high input": 0.009967274751179171,
+      "unit": "pp shift",
+      "value at low input": 9.291008585694877,
+      "value at high input": 10.077335544555472,
+      "swing": 0.7863269588605952,
+      "base value": 9.741016710865683
+    },
+    {
+      "driver": "Capex % of revenue",
+      "low input": 0.048464101615137756,
+      "high input": 0.05675962965079607,
+      "unit": "%",
+      "value at low input": 10.167523095179096,
+      "value at high input": 9.387502166961886,
+      "swing": 0.7800209282172101,
+      "base value": 9.741016710865683
+    }
+  ],
+  "comps": [
+    {
+      "method": "EV/EBITDA",
+      "peers": 6,
+      "multiple q1": 6.275,
+      "multiple median": 7.790000000000001,
+      "multiple q3": 9.8,
+      "value q1": 6.517000939447547,
+      "value median": 7.856071017586657,
+      "value q3": 9.632659042048441
+    },
+    {
+      "method": "P/E",
+      "peers": 6,
+      "multiple q1": 10.75,
+      "multiple median": 13.524999999999999,
+      "multiple q3": 16.502499999999998,
+      "value q1": 5.805000000000001,
+      "value median": 7.3035,
+      "value q3": 8.911349999999999
+    }
+  ],
+  "football": [
+    {
+      "label": "DCF Monte Carlo (P5 to P95)",
+      "low": 7.229902111653872,
+      "high": 11.37063339047965,
+      "mid": 9.021571915373748
+    },
+    {
+      "label": "DCF sensitivity (WACC +/-1pt, g +/-0.5pt)",
+      "low": 8.182290710344533,
+      "high": 12.285571129307352,
+      "mid": 9.741016710865683
+    },
+    {
+      "label": "Trading comps: EV/EBITDA (peer IQR)",
+      "low": 6.517000939447547,
+      "high": 9.632659042048441,
+      "mid": 7.856071017586657
+    },
+    {
+      "label": "Trading comps: P/E (peer IQR)",
+      "low": 5.805000000000001,
+      "high": 8.911349999999999,
+      "mid": 7.3035
+    },
+    {
+      "label": "Analyst price targets",
+      "low": 5.35,
+      "high": 12.3,
+      "mid": 8.79
+    },
+    {
+      "label": "52-week trading range",
+      "low": 5.61,
+      "high": 7.46,
+      "mid": null
+    }
+  ],
+  "implied_by_price": {
+    "implied_terminal_growth": -0.015042320000569803,
+    "implied_ebitda_margin": 0.14262435183470468,
+    "implied_wacc": 0.14306054429425283
+  },
+  "market_ev_ebitda": 6.142627224178317
+}

@@ -1,0 +1,477 @@
+{
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "machine": "x86_64",
+  "asian_variance_reduction": {
+    "pseudo": {
+      "price": 5.900237,
+      "std error": 0.022443,
+      "variance_reduction": 1.0,
+      "efficiency_gain": 1.0,
+      "seconds": 0.120241
+    },
+    "antithetic": {
+      "price": 5.854543,
+      "std error": 0.015567,
+      "variance_reduction": 2.078486,
+      "efficiency_gain": 2.728009,
+      "seconds": 0.091612
+    },
+    "sobol": {
+      "price": 5.85373,
+      "std error": 0.000643,
+      "variance_reduction": 1217.610256,
+      "efficiency_gain": 343.416948,
+      "seconds": 0.426322
+    },
+    "pseudo+cv": {
+      "price": 5.853331,
+      "std error": 0.000624,
+      "variance_reduction": 1295.522688,
+      "efficiency_gain": 1124.327777,
+      "seconds": 0.138549
+    },
+    "sobol+cv": {
+      "price": 5.853725,
+      "std error": 0.000122,
+      "variance_reduction": 33719.464081,
+      "efficiency_gain": 9161.399284,
+      "seconds": 0.442558
+    }
+  },
+  "validation": {
+    "passed": 13,
+    "total": 13,
+    "max_abs_z": 1.9638052646422877,
+    "rows": [
+      {
+        "benchmark": "European call (GBM)",
+        "Monte Carlo": 9.845631,
+        "std error": 0.039402,
+        "reference": 9.826298,
+        "reference method": "Black-Scholes",
+        "error": 0.019333,
+        "error / SE": 0.49066,
+        "pass": true
+      },
+      {
+        "benchmark": "European put (GBM, antithetic)",
+        "Monte Carlo": 3.963379,
+        "std error": 0.016463,
+        "reference": 3.992332,
+        "reference method": "Black-Scholes",
+        "error": -0.028953,
+        "error / SE": -1.758649,
+        "pass": true
+      },
+      {
+        "benchmark": "European call (GBM, Sobol RQMC)",
+        "Monte Carlo": 5.602054,
+        "std error": 0.000302,
+        "reference": 5.602487,
+        "reference method": "Black-Scholes",
+        "error": -0.000433,
+        "error / SE": -1.432073,
+        "pass": true
+      },
+      {
+        "benchmark": "Digital call",
+        "Monte Carlo": 0.4208,
+        "std error": 0.000593,
+        "reference": 0.421176,
+        "reference method": "closed form",
+        "error": -0.000375,
+        "error / SE": -0.632484,
+        "pass": true
+      },
+      {
+        "benchmark": "Geometric Asian call, 12 fixings",
+        "Monte Carlo": 5.628256,
+        "std error": 0.000568,
+        "reference": 5.628603,
+        "reference method": "closed form",
+        "error": -0.000347,
+        "error / SE": -0.611046,
+        "pass": true
+      },
+      {
+        "benchmark": "Up-and-out call, daily monitoring",
+        "Monte Carlo": 2.306382,
+        "std error": 0.011826,
+        "reference": 2.313103,
+        "reference method": "BGK-corrected formula",
+        "error": -0.006721,
+        "error / SE": -0.568314,
+        "pass": true
+      },
+      {
+        "benchmark": "Down-and-in put, daily monitoring",
+        "Monte Carlo": 5.781876,
+        "std error": 0.01906,
+        "reference": 5.748064,
+        "reference method": "BGK-corrected formula",
+        "error": 0.033812,
+        "error / SE": 1.773953,
+        "pass": true
+      },
+      {
+        "benchmark": "Heston call (rho = -0.7)",
+        "Monte Carlo": 8.824867,
+        "std error": 0.015786,
+        "reference": 8.802661,
+        "reference method": "Heston characteristic fn",
+        "error": 0.022206,
+        "error / SE": 1.406757,
+        "pass": true
+      },
+      {
+        "benchmark": "Merton jump-diffusion call",
+        "Monte Carlo": 12.204041,
+        "std error": 0.022257,
+        "reference": 12.224434,
+        "reference method": "Merton series",
+        "error": -0.020393,
+        "error / SE": -0.916251,
+        "pass": true
+      },
+      {
+        "benchmark": "American put (LSM, 50 dates)",
+        "Monte Carlo": 4.467694,
+        "std error": 0.007979,
+        "reference": 4.477957,
+        "reference method": "Bermudan binomial tree",
+        "error": -0.010263,
+        "error / SE": -1.286295,
+        "pass": true
+      },
+      {
+        "benchmark": "Delta (pathwise)",
+        "Monte Carlo": 0.611272,
+        "std error": 0.000493,
+        "reference": 0.611763,
+        "reference method": "Black-Scholes delta",
+        "error": -0.000491,
+        "error / SE": -0.996544,
+        "pass": true
+      },
+      {
+        "benchmark": "Vega (pathwise)",
+        "Monte Carlo": 37.413294,
+        "std error": 0.176189,
+        "reference": 37.759294,
+        "reference method": "Black-Scholes vega",
+        "error": -0.346001,
+        "error / SE": -1.963805,
+        "pass": true
+      },
+      {
+        "benchmark": "Gamma (likelihood ratio)",
+        "Monte Carlo": 0.018737,
+        "std error": 0.000363,
+        "reference": 0.01888,
+        "reference method": "Black-Scholes gamma",
+        "error": -0.000143,
+        "error / SE": -0.392538,
+        "pass": true
+      }
+    ]
+  },
+  "heston_smile_max_iv_error_bp": 14.612105741558523,
+  "lsm_grid": {
+    "cases": 20,
+    "max_abs_diff": 0.021004149783514947,
+    "mean_abs_diff": 0.007287907612506727,
+    "rows": [
+      {
+        "S0": 36,
+        "sigma": 0.2,
+        "T": 1,
+        "lsm": 4.4697,
+        "se": 0.0093,
+        "bermudan_tree": 4.478,
+        "european": 3.8443,
+        "diff": -0.0083
+      },
+      {
+        "S0": 36,
+        "sigma": 0.2,
+        "T": 2,
+        "lsm": 4.8265,
+        "se": 0.011,
+        "bermudan_tree": 4.8404,
+        "european": 3.763,
+        "diff": -0.0139
+      },
+      {
+        "S0": 36,
+        "sigma": 0.4,
+        "T": 1,
+        "lsm": 7.0926,
+        "se": 0.0191,
+        "bermudan_tree": 7.1018,
+        "european": 6.7114,
+        "diff": -0.0092
+      },
+      {
+        "S0": 36,
+        "sigma": 0.4,
+        "T": 2,
+        "lsm": 8.5065,
+        "se": 0.0227,
+        "bermudan_tree": 8.5071,
+        "european": 7.7,
+        "diff": -0.0006
+      },
+      {
+        "S0": 38,
+        "sigma": 0.2,
+        "T": 1,
+        "lsm": 3.2429,
+        "se": 0.0093,
+        "bermudan_tree": 3.2504,
+        "european": 2.8519,
+        "diff": -0.0075
+      },
+      {
+        "S0": 38,
+        "sigma": 0.2,
+        "T": 2,
+        "lsm": 3.75,
+        "se": 0.0111,
+        "bermudan_tree": 3.7449,
+        "european": 2.9906,
+        "diff": 0.0051
+      },
+      {
+        "S0": 38,
+        "sigma": 0.4,
+        "T": 1,
+        "lsm": 6.1405,
+        "se": 0.0186,
+        "bermudan_tree": 6.1479,
+        "european": 5.8343,
+        "diff": -0.0074
+      },
+      {
+        "S0": 38,
+        "sigma": 0.4,
+        "T": 2,
+        "lsm": 7.681,
+        "se": 0.0224,
+        "bermudan_tree": 7.6682,
+        "european": 6.9788,
+        "diff": 0.0128
+      },
+      {
+        "S0": 40,
+        "sigma": 0.2,
+        "T": 1,
+        "lsm": 2.3127,
+        "se": 0.0087,
+        "bermudan_tree": 2.314,
+        "european": 2.0664,
+        "diff": -0.0013
+      },
+      {
+        "S0": 40,
+        "sigma": 0.2,
+        "T": 2,
+        "lsm": 2.8905,
+        "se": 0.0105,
+        "bermudan_tree": 2.8845,
+        "european": 2.3559,
+        "diff": 0.0059
+      },
+      {
+        "S0": 40,
+        "sigma": 0.4,
+        "T": 1,
+        "lsm": 5.3079,
+        "se": 0.0179,
+        "bermudan_tree": 5.3117,
+        "european": 5.0596,
+        "diff": -0.0038
+      },
+      {
+        "S0": 40,
+        "sigma": 0.4,
+        "T": 2,
+        "lsm": 6.9379,
+        "se": 0.0218,
+        "bermudan_tree": 6.9169,
+        "european": 6.326,
+        "diff": 0.021
+      },
+      {
+        "S0": 42,
+        "sigma": 0.2,
+        "T": 1,
+        "lsm": 1.619,
+        "se": 0.0076,
+        "bermudan_tree": 1.617,
+        "european": 1.4645,
+        "diff": 0.002
+      },
+      {
+        "S0": 42,
+        "sigma": 0.2,
+        "T": 2,
+        "lsm": 2.2136,
+        "se": 0.0096,
+        "bermudan_tree": 2.2124,
+        "european": 1.8414,
+        "diff": 0.0013
+      },
+      {
+        "S0": 42,
+        "sigma": 0.4,
+        "T": 1,
+        "lsm": 4.5767,
+        "se": 0.0171,
+        "bermudan_tree": 4.5823,
+        "european": 4.3787,
+        "diff": -0.0057
+      },
+      {
+        "S0": 42,
+        "sigma": 0.4,
+        "T": 2,
+        "lsm": 6.261,
+        "se": 0.0213,
+        "bermudan_tree": 6.2443,
+        "european": 5.7356,
+        "diff": 0.0167
+      },
+      {
+        "S0": 44,
+        "sigma": 0.2,
+        "T": 1,
+        "lsm": 1.1147,
+        "se": 0.0065,
+        "bermudan_tree": 1.1099,
+        "european": 1.0169,
+        "diff": 0.0049
+      },
+      {
+        "S0": 44,
+        "sigma": 0.2,
+        "T": 2,
+        "lsm": 1.6908,
+        "se": 0.0087,
+        "bermudan_tree": 1.6898,
+        "european": 1.4292,
+        "diff": 0.0009
+      },
+      {
+        "S0": 44,
+        "sigma": 0.4,
+        "T": 1,
+        "lsm": 3.9509,
+        "se": 0.0163,
+        "bermudan_tree": 3.9475,
+        "european": 3.7828,
+        "diff": 0.0034
+      },
+      {
+        "S0": 44,
+        "sigma": 0.4,
+        "T": 2,
+        "lsm": 5.6555,
+        "se": 0.0207,
+        "bermudan_tree": 5.6412,
+        "european": 5.202,
+        "diff": 0.0143
+      }
+    ]
+  },
+  "short_vol_book": {
+    "value": -46943.90114700252,
+    "net_dollar_delta": -45778.304115068284,
+    "delta_normal_var": 5543.578833817226,
+    "mc_normal_var": 24240.15628126057,
+    "mc_t_var": 35624.97574446074,
+    "mc_normal_cvar": 31206.850810727476,
+    "mc_t_cvar": 63998.42422044043,
+    "understatement_x": 4.372654743067694
+  },
+  "backtest": [
+    {
+      "method": "normal",
+      "days": 2270,
+      "exceptions": 32,
+      "expected": 22.7,
+      "rate %": 1.4097,
+      "LR_pof": 3.4143,
+      "p_pof": 0.0646,
+      "LR_ind": 0.9155,
+      "p_ind": 0.3386,
+      "p_cc": 0.1148,
+      "basel_zone": "yellow",
+      "verdict": "pass"
+    },
+    {
+      "method": "student_t",
+      "days": 2270,
+      "exceptions": 23,
+      "expected": 22.7,
+      "rate %": 1.0132,
+      "LR_pof": 0.004,
+      "p_pof": 0.9496,
+      "LR_ind": 0.4711,
+      "p_ind": 0.4925,
+      "p_cc": 0.7886,
+      "basel_zone": "green",
+      "verdict": "pass"
+    },
+    {
+      "method": "historical",
+      "days": 2270,
+      "exceptions": 40,
+      "expected": 22.7,
+      "rate %": 1.7621,
+      "LR_pof": 10.8547,
+      "p_pof": 0.001,
+      "LR_ind": 1.4357,
+      "p_ind": 0.2308,
+      "p_cc": 0.0021,
+      "basel_zone": "yellow",
+      "verdict": "fail"
+    },
+    {
+      "method": "ewma",
+      "days": 2270,
+      "exceptions": 25,
+      "expected": 22.7,
+      "rate %": 1.1013,
+      "LR_pof": 0.2279,
+      "p_pof": 0.6331,
+      "LR_ind": 0.5571,
+      "p_ind": 0.4555,
+      "p_cc": 0.6754,
+      "basel_zone": "green",
+      "verdict": "pass"
+    },
+    {
+      "method": "fhs",
+      "days": 2270,
+      "exceptions": 29,
+      "expected": 22.7,
+      "rate %": 1.2775,
+      "LR_pof": 1.6237,
+      "p_pof": 0.2026,
+      "LR_ind": 0.7509,
+      "p_ind": 0.3862,
+      "p_cc": 0.305,
+      "basel_zone": "green",
+      "verdict": "pass"
+    }
+  ],
+  "performance": {
+    "benchmark": "arithmetic Asian call, 100k paths x 52 steps",
+    "python_loop_s": 1.1246534530000645,
+    "numpy_s": 0.0957495289999315,
+    "speedup_x": 11.745785746902934,
+    "gbm_252x100k_s": 0.5192856170001505,
+    "path_steps_per_s": 48528207.165793106
+  }
+}

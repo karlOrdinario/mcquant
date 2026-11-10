@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcquant"
+version = "1.1.0"
+description = "A validated Monte Carlo engine for derivatives pricing, portfolio risk and company valuation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Karl Andrei Ordinario" }]
+keywords = ["monte carlo", "quantitative finance", "option pricing", "value at risk", "longstaff-schwartz", "dcf", "valuation"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "pandas>=2.0", "pyyaml>=6.0", "openpyxl>=3.1"]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.45", "plotly>=5.18"]
+data = ["yfinance>=0.2.40"]
+docs = ["matplotlib>=3.7"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "hypothesis>=6.90", "ruff>=0.4", "matplotlib>=3.7", "streamlit>=1.45", "plotly>=5.18"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = ["error::RuntimeWarning:mcquant.*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+ignore = ["E741", "B905"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E731"]
+# These scripts write Markdown reports; long prose strings read better unwrapped.
+"scripts/*" = ["E501"]
+
+[tool.coverage.run]
+source = ["mcquant"]

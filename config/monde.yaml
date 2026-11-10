@@ -1,0 +1,128 @@
+# Monde Nissin Corporation (PSE: MONDE): company facts for the valuation.
+#
+# RULES:
+# - Every number carries a `source` (and `as_of`). tests/test_valuation_config.py fails otherwise.
+# - Financial statement figures are copied exactly as reported, in PHP thousands.
+#   The loader converts them to PHP millions.
+# - Public information only. Nothing here comes from inside the company.
+# - A number that cannot be verified must be written as TODO_SOURCE, never guessed.
+
+company:
+  name: Monde Nissin Corporation
+  ticker: MONDE
+  exchange: Philippine Stock Exchange
+  currency: PHP
+  fiscal_year_end: "12-31"
+
+sources:
+  fy25_pr: &fy25_pr "Monde Nissin FY2025 press release with unaudited consolidated financial statements, 26 Mar 2026. https://mondenissin.com/wp-content/uploads/2026/03/MONDE-FY25-Press-Release.pdf"
+  fy24_pr: &fy24_pr "Monde Nissin FY2024 press release with consolidated financial statements, 27 Mar 2025. https://mondenissin.com/wp-content/uploads/2025/03/MONDE-FY24-Press-Release.pdf"
+  edge_9m26: &edge_9m26 "PSE EDGE, SEC Form 17-C C07825-2026 (9M 2026 results), 4 Nov 2026. https://edge.pse.com.ph/downloadHtml.do?file_id=1985845"
+  bw_price: &bw_price "BusinessWorld, 'Monde Nissin shares climb on earnings, higher dividend', 8 Nov 2026. https://bworldonline.com/corporate/2026/11/08/792105/monde-nissin-shares-climb-on-earnings-higher-dividend/"
+  bw_9m26: &bw_9m26 "BusinessWorld, 'Monde Nissin Q3 profit rises 1.8% to P2.29 billion', 4 Nov 2026. https://bworldonline.com/corporate/2026/11/04/791503/monde-nissin-q3-profit-rises-1-8-to-p2-29-billion/"
+  sa_monde: &sa_monde "stockanalysis.com, Monde Nissin (PSE:MONDE) overview, data from S&P Global Market Intelligence, as of 16 Oct 2026. https://stockanalysis.com/quote/pse/MONDE/"
+  tribune_fy25: &tribune_fy25 "Daily Tribune, 'Monde Nissin soars to P8.6B net income in 2025', 26 Mar 2026. https://tribune.net.ph/2026/03/26/monde-nissin-soars-to-p86b-net-income-in-2025"
+  adb_yield: &adb_yield "ADB AsianBondsOnline, Philippines market watch, close of 2 Nov 2026. https://asianbondsonline.adb.org/economy/?economy=PH&page=1"
+  damodaran_ctry: &damodaran_ctry "Damodaran Online, Country Default Spreads and Risk Premiums, last updated 5 Jan 2026. https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html"
+  damodaran_beta: &damodaran_beta "Damodaran Online, Betas by Sector (Global), data as of January 2026. https://pages.stern.nyu.edu/adamodar/New_Home_Page/datafile/BetasGlobal.html"
+  investing_targets: &investing_targets "Investing.com, Monde Nissin Corp (MONDE) overview, analyst price targets, as of 17 Aug 2026. https://ng.investing.com/equities/monde-nissin"
+
+# --------------------------------------------------------------------------- #
+# Income statement and cash flow items, PHP thousands
+# --------------------------------------------------------------------------- #
+history:
+  net_sales:
+    "2023": {value: 80169467, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Consolidated statements of comprehensive income"}
+    "2024": {value: 83120056, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of comprehensive income"}
+    "2025": {value: 86483039, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of comprehensive income"}
+  core_ebitda:
+    "2023": {value: 13540000, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Core EBITDA table (reported as Php 13,540 mn)"}
+    "2024": {value: 16019000, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Core EBITDA table (reported as Php 16,019 mn)"}
+    "2025": {value: 15882000, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Core EBITDA table (reported as Php 15,882 mn)"}
+  depreciation_amortization:
+    "2023": {value: 2771966, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Consolidated statements of cash flows"}
+    "2024": {value: 2687921, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of cash flows"}
+    "2025": {value: 2826728, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of cash flows"}
+  capex:
+    "2023": {value: 3641270, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Cash flows: additions to property, plant and equipment"}
+    "2024": {value: 4823143, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Cash flows: additions to property, plant and equipment (FY2025 comparative; FY2024 release showed 4,860,733)"}
+    "2025": {value: 4719074, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Cash flows: additions to property, plant and equipment"}
+  trade_receivables:
+    "2023": {value: 6410138, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Statements of financial position: trade and other receivables"}
+    "2024": {value: 7709717, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: trade and other receivables"}
+    "2025": {value: 8400984, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: trade and other receivables"}
+  inventories:
+    "2023": {value: 9186527, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Statements of financial position: inventories"}
+    "2024": {value: 8920788, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: inventories"}
+    "2025": {value: 8971748, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: inventories"}
+  payables:
+    "2023": {value: 11684310, unit: PHP thousands, source: *fy24_pr, as_of: 2025-03-27, where: "Statements of financial position: accounts payable and other current liabilities"}
+    "2024": {value: 12550324, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: accounts payable and other current liabilities"}
+    "2025": {value: 12441381, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Statements of financial position: accounts payable and other current liabilities"}
+  income_before_tax_2025: {value: 11666999, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of comprehensive income"}
+  income_tax_2025: {value: 3067754, unit: PHP thousands, source: *fy25_pr, as_of: 2026-03-26, where: "Consolidated statements of comprehensive income: total provision for income tax"}
+
+recent_trading:
+  revenue_9m_2026: {value: 67890000, unit: PHP thousands, source: *bw_9m26, as_of: 2026-11-04, where: "Article: Jan-Sep revenue P67.89 billion"}
+  revenue_9m_2025: {value: 63260000, unit: PHP thousands, source: *bw_9m26, as_of: 2026-11-04, where: "Article: from P63.26 billion"}
+  core_eps_2025: {value: 0.54, unit: PHP per share, source: *tribune_fy25, as_of: 2026-03-26, where: "Article: core EPS held steady at P0.54"}
+
+# --------------------------------------------------------------------------- #
+# Equity bridge items at 31 December 2025, PHP thousands
+# --------------------------------------------------------------------------- #
+balance_sheet_2025:
+  debt:
+    loans_payable_current: {value: 46728, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+    loans_payable_noncurrent: {value: 1591746, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+    acceptances_trust_receipts: {value: 1039990, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position (short-term bank trade financing, treated as debt)"}
+    lease_liabilities_current: {value: 92507, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position (PFRS 16; EBITDA excludes lease costs, so leases are debt)"}
+    lease_liabilities_noncurrent: {value: 2464815, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+  debt_like:
+    dividends_payable: {value: 2874978, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position (P0.16/share declared Nov 2025, paid Jan 2026; 0.16 x 17,968.6m = 2,875.0m cross-checks)"}
+    pension_liability: {value: 911731, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+  cash:
+    cash_and_equivalents: {value: 15398256, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+  non_operating_assets:
+    current_financial_assets: {value: 1809793, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+    guaranty_asset: {value: 7710921, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position (fair-value changes are excluded from core EBITDA)"}
+    financial_assets_fvoci: {value: 584296, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+    investments_in_associates_jv: {value: 1116711, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position"}
+  minority_interest:
+    non_controlling_interests: {value: 155574, unit: PHP thousands, source: *fy25_pr, as_of: 2025-12-31, where: "Statement of financial position (book value)"}
+
+# --------------------------------------------------------------------------- #
+# Market data
+# --------------------------------------------------------------------------- #
+market:
+  share_price: {value: 6.40, unit: PHP per share, source: *bw_price, as_of: 2026-11-06, where: "Article: closed at P6.40 on Friday (6 Nov 2026)"}
+  shares_outstanding: {value: 17968611496, unit: shares, source: *edge_9m26, as_of: 2026-11-04, where: "Cover page: common shares outstanding"}
+  week52_low: {value: 5.61, unit: PHP per share, source: *sa_monde, as_of: 2026-10-16, where: "52-week range"}
+  week52_high: {value: 7.46, unit: PHP per share, source: *sa_monde, as_of: 2026-10-16, where: "52-week range"}
+  regression_beta: {value: 0.62, unit: x, source: *sa_monde, as_of: 2026-10-16, where: "Beta (5Y). Cross-check only: the same provider shows near-zero betas for several Asian peers"}
+  analyst_target_low: {value: 5.35, unit: PHP per share, source: *investing_targets, as_of: 2026-08-17, where: "12-month price target, low estimate"}
+  analyst_target_high: {value: 12.30, unit: PHP per share, source: *investing_targets, as_of: 2026-08-17, where: "12-month price target, high estimate"}
+  analyst_target_mean: {value: 8.79, unit: PHP per share, source: *investing_targets, as_of: 2026-08-17, where: "12-month price target, average"}
+
+dividends_after_valuation_date:
+  - {date: 2026-05-21, amount: {value: 0.24, unit: PHP per share, source: *tribune_fy25, as_of: 2026-03-26, where: "Article: P0.24 per share, payment scheduled for 21 May"}}
+
+# --------------------------------------------------------------------------- #
+# Discount-rate inputs
+# --------------------------------------------------------------------------- #
+rates:
+  ph_10y_government_yield: {value: 0.08134, unit: decimal, source: *adb_yield, as_of: 2026-11-02, where: "Govt. bond yields: 10 Year 8.134"}
+  ph_moodys_rating_default_spread: {value: 0.0162, unit: decimal, source: *damodaran_ctry, as_of: 2026-01-05, where: "Philippines row: Baa2, adjusted default spread 1.62%"}
+  ph_total_equity_risk_premium: {value: 0.0669, unit: decimal, source: *damodaran_ctry, as_of: 2026-01-05, where: "Philippines row: equity risk premium 6.69% (mature 4.23% + country 2.46%)"}
+  ph_corporate_tax_rate: {value: 0.25, unit: decimal, source: *damodaran_ctry, as_of: 2026-01-05, where: "Philippines row: corporate tax rate 25.00%"}
+  food_processing_unlevered_beta_cash_corrected: {value: 0.56, unit: x, source: *damodaran_beta, as_of: 2026-01-01, where: "Food Processing (1,450 firms): unlevered beta corrected for cash 0.56"}
+
+# --------------------------------------------------------------------------- #
+# Trading comparables (prices and multiples from S&P Global via stockanalysis.com)
+# --------------------------------------------------------------------------- #
+peers:
+  - {name: Universal Robina, ticker: "PSE:URC", country: Philippines, ev_ebitda: {value: 6.44, unit: x, source: "stockanalysis.com PSE:URC statistics, S&P Global data. https://stockanalysis.com/quote/pse/URC/statistics/", as_of: 2026-09-11}, pe: {value: 11.53, unit: x, source: "stockanalysis.com PSE:URC statistics. https://stockanalysis.com/quote/pse/URC/statistics/", as_of: 2026-09-11}}
+  - {name: Century Pacific Food, ticker: "PSE:CNPF", country: Philippines, ev_ebitda: {value: 11.30, unit: x, source: "stockanalysis.com PSE:CNPF statistics. https://stockanalysis.com/quote/pse/CNPF/statistics/", as_of: 2026-09-11}, pe: {value: 15.52, unit: x, source: "stockanalysis.com PSE:CNPF statistics. https://stockanalysis.com/quote/pse/CNPF/statistics/", as_of: 2026-09-11}}
+  - {name: Indofood CBP, ticker: "IDX:ICBP", country: Indonesia, ev_ebitda: {value: 6.22, unit: x, source: "stockanalysis.com IDX:ICBP statistics. https://stockanalysis.com/quote/idx/ICBP/statistics/", as_of: 2026-09-27}, pe: {value: 10.49, unit: x, source: "stockanalysis.com IDX:ICBP statistics. https://stockanalysis.com/quote/idx/ICBP/statistics/", as_of: 2026-09-27}}
+  - {name: Mayora Indah, ticker: "IDX:MYOR", country: Indonesia, ev_ebitda: {value: 5.08, unit: x, source: "stockanalysis.com IDX:MYOR statistics. https://stockanalysis.com/quote/idx/MYOR/statistics/", as_of: 2026-10-08}, pe: {value: 9.01, unit: x, source: "stockanalysis.com IDX:MYOR statistics. https://stockanalysis.com/quote/idx/MYOR/statistics/", as_of: 2026-10-08}}
+  - {name: Nissin Foods Holdings, ticker: "TYO:2897", country: Japan, ev_ebitda: {value: 10.02, unit: x, source: "stockanalysis.com TYO:2897 statistics. https://stockanalysis.com/quote/tyo/2897/statistics/", as_of: 2026-11-07}, pe: {value: 18.67, unit: x, source: "stockanalysis.com TYO:2897 statistics. https://stockanalysis.com/quote/tyo/2897/statistics/", as_of: 2026-11-07}}
+  - {name: Thai President Foods, ticker: "BKK:TFMAMA", country: Thailand, ev_ebitda: {value: 9.14, unit: x, source: "stockanalysis.com BKK:TFMAMA statistics. https://stockanalysis.com/quote/bkk/TFMAMA/statistics/", as_of: 2026-09-23}, pe: {value: 16.83, unit: x, source: "stockanalysis.com BKK:TFMAMA statistics. https://stockanalysis.com/quote/bkk/TFMAMA/statistics/", as_of: 2026-09-23}}

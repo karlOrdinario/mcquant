@@ -1,0 +1,77 @@
+# Forecast assumptions and Monte Carlo ranges for Monde Nissin.
+#
+# These are JUDGEMENTS, not facts. Each one has a `why` that ties it to sourced
+# history in config/monde.yaml. docs/ASSUMPTIONS.md is generated from this file
+# by scripts/build_assumptions_md.py (a test checks it is up to date).
+#
+# Distributions:
+#   triangular: {low, mode, high}       mode = most likely value (the base case)
+#   truncated_normal: {mean, sd, low, high}
+#   fixed: {value}
+
+valuation_date: 2025-12-31   # latest full-year balance sheet; FY2026 is forecast year 1
+price_date: 2026-11-06       # date of the market price in config/monde.yaml
+forecast_years: [2026, 2027, 2028, 2029, 2030]
+
+simulation:
+  n_sims: 50000
+  seed: 2026
+  method: pseudo
+  growth_autocorrelation:
+    value: 0.6
+    why: "Sales momentum persists: a strong year tends to be followed by another (pricing actions and distribution gains carry over). 0.6 between neighbouring years, decaying for years further apart."
+  growth_margin_correlation:
+    value: 0.3
+    why: "Pricing power lifts both revenue and margin, but input costs can raise prices while squeezing margins, so the link is kept mild."
+
+drivers:
+  revenue_growth:
+    "2026":
+      triangular: {low: 0.050, mode: 0.070, high: 0.085}
+      why: "9M 2026 revenue grew 7.3% (67.89bn vs 63.26bn). With one quarter left, full-year growth is unlikely to be far from that."
+    "2027":
+      triangular: {low: 0.030, mode: 0.060, high: 0.080}
+      why: "Growth was 3.7% in 2024 and 4.0% in 2025, then 7.3% in 9M 2026 helped by price increases. Assume some pricing fades. Low end matches 2024-2025; high end assumes 2026 momentum holds."
+    "2028":
+      triangular: {low: 0.030, mode: 0.055, high: 0.075}
+      why: "Mid-single-digit growth typical of a market-leading staples company in a growing economy, fading toward the long-run rate."
+    "2029":
+      triangular: {low: 0.030, mode: 0.050, high: 0.070}
+      why: "Converging toward a mature rate: by year 4 the 2026 price increases are in the base, so growth relies on volume (population and income growth) plus inflation-level pricing, about 5%."
+    "2030":
+      triangular: {low: 0.025, mode: 0.050, high: 0.070}
+      why: "Final forecast year: close to long-run nominal growth for Philippine consumer staples."
+  ebitda_margin:
+    triangular: {low: 0.165, mode: 0.190, high: 0.210}
+    why: "Core EBITDA margin was 16.9% (2023), 19.3% (2024) and 18.4% (2025). 9M 2026 core net income rose 16.1% on 7.3% revenue growth, so margins improved, and Quorn turned EBIT-positive. The low end allows a repeat of the 2023 commodity squeeze (edible oil, the 2026 Middle East crisis); the high end allows modest gains beyond the 2024 peak."
+  da_pct_revenue:
+    fixed: {value: 0.033}
+    why: "D&A was 3.46%, 3.23% and 3.27% of revenue in 2023-2025; average about 3.3%."
+  capex_pct_revenue:
+    triangular: {low: 0.045, mode: 0.053, high: 0.060}
+    why: "Capex was 4.54%, 5.80% and 5.46% of revenue in 2023-2025 (average 5.3%). Capex above D&A funds growth; the range spans the three-year history."
+  nwc_pct_revenue_change:
+    fixed: {value: 0.055}
+    why: "Net working capital (receivables + inventories - payables) was 4.9%, 4.9% and 5.7% of revenue in 2023-2025. Keeping the ratio near 5.5% means each extra peso of revenue ties up about 5.5 centavos."
+  tax_rate:
+    fixed: {value: 0.25}
+    why: "Philippine statutory corporate income tax rate of 25% (Damodaran country table). The 2025 effective rate was 26.3%, lifted by items that are not part of core operations."
+  terminal_growth:
+    triangular: {low: 0.030, mode: 0.040, high: 0.050}
+    why: "Perpetual nominal growth. The BSP inflation target is 2-4%; adding about 1% real growth for a market leader gives about 4%. Kept well below the peso risk-free rate (6.5%) and long-run nominal GDP growth, because no company can outgrow its economy forever."
+
+wacc:
+  risk_free:
+    triangular: {low: 0.060, mode: 0.06514, high: 0.08134}
+    why: "Most likely: Damodaran's method for a local-currency risk-free rate when the government is not Aaa-rated. The 10-year yield (8.134%) includes a premium for the risk that the government defaults, and the country risk premium inside the ERP already charges for that, so it is removed: 8.134% - 1.62% = 6.514%. High end: many practitioners use the 10-year yield directly (8.134%), so the model gives that view real weight. Low end (6.0%): Philippine 10-year yields were about 5.9% in February 2026 before the 2026 spike, so partial reversion is plausible."
+  beta:
+    truncated_normal: {mean: 0.58, sd: 0.10, low: 0.40, high: 0.90}
+    why: "Bottom-up beta: global food processing unlevered beta of 0.56 (corrected for cash), relevered for Monde's debt-to-equity of 4.6%: 0.56 x (1 + 0.75 x 0.046) = 0.58. It agrees with Monde's own 5-year regression beta of 0.62. The standard deviation of 0.10 reflects estimation error. Bounds keep a defensive food company between 0.4 and 0.9."
+  equity_risk_premium:
+    triangular: {low: 0.059, mode: 0.0669, high: 0.080}
+    why: "Damodaran's January 2026 total ERP for the Philippines is 6.69% (4.23% mature market + 2.46% country). Skewed upward because Philippine yields rose about 2 percentage points during 2026 and the central bank hiked rates, which points to higher, not lower, required returns."
+  pre_tax_cost_of_debt:
+    spread_over_government: 0.01
+    why: "Monde has almost no debt (4.4% of capital), so this barely matters. Assume the 10-year government yield plus a 1 percentage point corporate spread: 9.134%."
+  weights:
+    why: "Market values: equity = P6.40 x 17,968.6m shares = P115.0bn; debt = loans + trust receipts + lease liabilities = P5.2bn. Equity weight 95.6%."
