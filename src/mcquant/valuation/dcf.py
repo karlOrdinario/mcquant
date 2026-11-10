@@ -9,6 +9,8 @@
     EV         = sum PV(FCFF_t) + PV(terminal value)
     Equity     = EV - debt + cash - minority interest
     Per share  = Equity / diluted shares
+
+Worked example: the toy company in tests/test_dcf.py, solved by hand.
 """
 
 from __future__ import annotations

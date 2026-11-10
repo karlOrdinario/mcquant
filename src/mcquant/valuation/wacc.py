@@ -2,6 +2,8 @@
 
     Re   = Rf + beta x ERP
     WACC = E/(D+E) x Re + D/(D+E) x Rd x (1 - tax)
+
+Worked examples with known answers: tests/test_wacc.py.
 """
 
 from __future__ import annotations
